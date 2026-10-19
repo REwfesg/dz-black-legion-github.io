@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>История — Чёрный Легион</title>
+<style>
+:root{--bg:#0a0a0a;--panel:#111;--line:#222;--text:#ccc;--muted:#8a8a8a;--gold:#b8860b;--gold2:#f0c040;--navbg:#000;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0a0a0a}}
+:root[data-theme="dark"]{--bg:#0a0a0a}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 70px);scroll-behavior:smooth}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',Roboto,system-ui,sans-serif;line-height:1.7}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--navbg);z-index:101}
+nav{background:var(--navbg);border-bottom:3px solid var(--gold);padding:1rem 2rem;display:flex;justify-content:center;gap:2rem;position:sticky;top:env(safe-area-inset-top,0px);z-index:100;flex-wrap:wrap}
+nav a{color:var(--gold);text-decoration:none;font-weight:700;letter-spacing:2px;text-transform:uppercase;font-size:.9rem;padding:.3rem 0;border-bottom:2px solid transparent;transition:.3s}
+nav a:hover,nav a.active,nav a:focus-visible{color:var(--gold2);border-bottom-color:var(--gold2);outline:none}
+.hero{min-height:60vh;display:flex;align-items:center;justify-content:center;position:relative;border-bottom:4px solid var(--gold);background:#111 center/cover no-repeat}
+.hero::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.55),var(--bg))}
+.hero h1{position:relative;z-index:2;font-size:clamp(2.2rem,8vw,5rem);color:var(--gold2);text-transform:uppercase;letter-spacing:clamp(2px,1.2vw,8px);text-shadow:0 0 30px var(--gold),0 0 60px #000;font-weight:900;text-align:center;padding:0 1rem;overflow-wrap:anywhere}
+.container{max-width:1100px;margin:0 auto;padding:3rem 1.5rem}
+h1.t{color:var(--gold2);font-size:clamp(1.8rem,5vw,2.5rem);text-transform:uppercase;letter-spacing:4px;margin-bottom:2rem;text-align:center}
+h2{color:var(--gold2);font-size:2rem;margin-bottom:1.5rem;text-transform:uppercase;letter-spacing:3px;border-bottom:1px solid #333;padding-bottom:.5rem}
+.intro,.profile{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:start;margin-bottom:3rem}
+.profile{grid-template-columns:1fr 1.2fr;gap:3rem}
+.intro p,.profile-text p{margin-bottom:1.2rem;font-size:1.05rem}
+.portrait{width:100%;aspect-ratio:344/508;max-height:640px;object-fit:cover;display:block;border:2px solid var(--gold);border-radius:4px;box-shadow:0 0 40px rgba(184,134,11,.2);background:#1a1a1a}
+.profile-text h1{color:var(--gold2);font-size:clamp(2rem,5vw,2.8rem);text-transform:uppercase;letter-spacing:3px;line-height:1.15;margin-bottom:.5rem}
+.subtitle{color:var(--muted);text-transform:uppercase;letter-spacing:3px;margin-bottom:1.5rem;border-bottom:1px solid #333;padding-bottom:1rem;font-size:.95rem}
+.quote{display:flex;gap:1.5rem;align-items:center;border-left:4px solid var(--gold);padding:1.5rem 2rem;background:var(--panel);margin:3rem 0;font-style:italic;color:var(--gold2);font-size:1.3rem}
+.quote span{display:block;margin-top:1rem;font-size:.9rem;color:var(--muted);font-style:normal}
+.emblem{width:120px;height:120px;object-fit:contain;flex:none}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;margin:3rem 0}
+.stat-card{background:var(--panel);border:1px solid var(--line);border-top:3px solid var(--gold);padding:1.5rem;text-align:center;transition:.3s}
+.stat-card:hover{border-color:var(--gold);background:#1a1a1a}
+.num{font-size:2.5rem;color:var(--gold2);font-weight:900}
+.label{font-size:.8rem;text-transform:uppercase;letter-spacing:1px;color:var(--muted)}
+.timeline{position:relative;padding-left:2rem}
+.timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(to bottom,var(--gold),#333)}
+.event{position:relative;margin-bottom:2.5rem;padding-left:1.5rem}
+.event::before{content:'';position:absolute;left:calc(-2rem + 1.5px);top:.5rem;width:14px;height:14px;background:var(--gold);border-radius:50%;border:2px solid var(--bg);transform:translateX(-50%)}
+.event h3{color:var(--gold2);font-size:1.3rem;margin-bottom:.3rem}
+.date{color:var(--muted);font-size:.85rem;text-transform:uppercase;letter-spacing:1px}
+.event p{color:#aaa}
+.weapons h3{color:var(--gold2);text-transform:uppercase;letter-spacing:2px;margin:2rem 0 1rem;font-size:1.2rem}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.item{background:var(--panel);border-left:3px solid var(--gold);padding:1rem}
+.item strong{color:var(--gold2);display:block;margin-bottom:.3rem}
+.item span{font-size:.9rem;color:#999}
+.lords{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem;margin-top:1rem}
+.lord{background:var(--panel);border:1px solid var(--line);padding:1.5rem;text-align:center;transition:.3s}
+.lord:hover{border-color:var(--gold)}
+.lord h4{color:var(--gold2);margin-bottom:.5rem;text-transform:uppercase;letter-spacing:1px}
+.lord p{font-size:.9rem;color:var(--muted)}
+.note{color:var(--muted);font-size:.8rem;text-align:center;padding:2rem 1rem;border-top:1px solid var(--line)}
+@media (max-width:768px){.quote{flex-direction:column;text-align:center}.intro,.profile,.grid2{grid-template-columns:1fr}nav{gap:1rem;padding:.8rem}nav a{font-size:.75rem}.portrait{max-height:520px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html">Главная</a>
+  <a href="history.html" class="active">История</a>
+  <a href="abaddon.html">Абаддон</a>
+</nav>
+<main>
+<section>
+  <div class="container">
+    <h1 class="t">Путь Предательства</h1>
+    <div class="timeline">
+      <div class="event"><div class="date">Великий Крестовый Поход</div><h3>Лунные Волки</h3><p>XVI легион, созданный из генов Хоруса, — одна из лучших армий Императора. Когда Хорус становится Военным Магистром, легион переименовывают в <strong>Сынов Хоруса</strong>.</p></div>
+      <div class="event"><div class="date">M31, Ересь Хоруса</div><h3>Падение Ангела</h3><p>Истваан V, резня верных легионов, осада Терры. В поединке на борту «Мстительного Духа» Император убивает Хоруса, но получает тяжелейшие раны. Уцелевшие Сыны Хоруса отступают в Око Ужаса.</p></div>
+      <div class="event"><div class="date">После Ереси</div><h3>Рождение Чёрного Легиона</h3><p>Абаддон отвергает попытки возродить Хоруса клонированием, возглавляет легион и сменяет цвет доспех на чёрный. Так рождается <strong>Чёрный Легион</strong> — армия, нацеленная на месть.</p></div>
+      <div class="event"><div class="date">M31 — M41</div><h3>Тринадцать Чёрных Крестовых Походов</h3><p>Абаддон объединяет под своим знаменем и другие банды Хаоса. Двенадцатый поход (Готическая война) заканчивается его поражением. Тринадцатый приводит к падению Кадии.</p></div>
+      <div class="event"><div class="date">Настоящее время</div><h3>Эра Разорителя</h3><p>Галактика расколота Великим Разломом. Абаддон и его легион не остановлены: хаос для них — оружие, а не религия.</p></div>
+    </div>
+  </div>
+</section>
+</main>
+<p class="note">Дмитриев Илья 10б использовал руки и ИИ для сбора текста и кодировки изображения в base64.</p>
+</body>
+</html>
